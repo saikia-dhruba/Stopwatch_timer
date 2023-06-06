@@ -12,33 +12,30 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: 
-      Obx(() => 
-      Container(
-              color:Colors.deepPurple[200],
-              child: CurvedNavigationBar(
-                  onTap: (index) {
-                    controller.changePage(index);
-                    controller.currentIndex.value = index;
-                  },
-                  index: controller.currentIndex.value,
-                  backgroundColor: Colors.transparent.withOpacity(0),
-                  animationDuration: const Duration(milliseconds: 300),
-                  items: const [
-                    Icon(
-                      Icons.timer,
-                      size: 40,
-                      color: Colors.deepPurple,
-                    ),
-                    Icon(
-                      Icons.stop,
-                      size: 40,
-                      color: Colors.deepPurple,
-                    ),
-                  ]),
-            )
-            )
-            ,
+      bottomNavigationBar: Obx(() => Container(
+        color: Colors.deepPurple[200],
+        child: CurvedNavigationBar(
+          onTap: (index) {
+            controller.changePage(index);
+            controller.currentIndex.value = index;
+          },
+          index: controller.currentIndex.value,
+          backgroundColor: Colors.transparent.withOpacity(0),
+          animationDuration: const Duration(milliseconds: 300),
+          items: const [
+            Icon(
+              Icons.timer,
+              size: 40,
+              color: Colors.deepPurple,
+            ),
+            Icon(
+              Icons.stop,
+              size: 40,
+              color: Colors.deepPurple,
+            ),
+          ],
+        ),
+      )),
       appBar: AppBar(
         title: Obx(() => Text(controller.header.value)),
         backgroundColor: Colors.deepPurple,
@@ -46,20 +43,18 @@ class HomeView extends GetView<HomeController> {
       ),
       body: Container(
         color: Colors.deepPurple[200],
-        child: Expanded(
-                child: Obx(
-                  () => IndexedStack(
-                    index: controller.currentIndex.value,
-                    children: [
-                      Timer(controller: controller),
-                      StopWatch(controller: controller),
-                      // Container(
-                      //   color: orange,
-                      // ),
-                    ],
-                  ),
-                ),
-              ),
+        child: Obx(
+          () => IndexedStack(
+            index: controller.currentIndex.value,
+            children: [
+              Timer(controller: controller),
+              StopWatch(controller: controller),
+              // Container(
+              //   color: orange,
+              // ),
+            ],
+          ),
+        ),
       ),
     );
   }
